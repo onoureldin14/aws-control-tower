@@ -1,0 +1,55 @@
+###################################################################
+# This file is part of the Python Project
+###################################################################
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.4.0
+    hooks:
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+      - id: check-yaml
+        args: [--allow-multiple-documents]
+      - id: check-added-large-files
+        exclude: ^.*\.gif$
+
+
+  - repo: https://github.com/psf/black
+    rev: 23.7.0
+    hooks:
+      - id: black
+        language_version: python3
+
+  - repo: https://github.com/PyCQA/isort
+    rev: 5.12.0
+    hooks:
+      - id: isort
+        language_version: python3
+
+###################################################################
+# This file is part of the Terraform Project
+###################################################################
+
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v5.0.0
+    hooks:
+      - id: check-added-large-files
+        exclude: ^.*\.gif$
+      - id: check-merge-conflict
+      - id: check-vcs-permalinks
+      - id: forbid-new-submodules
+      - id: no-commit-to-branch
+      - id: end-of-file-fixer
+      - id: trailing-whitespace
+        args: [--markdown-linebreak-ext=md]
+        exclude: CHANGELOG.md
+      - id: check-merge-conflict
+      - id: check-executables-have-shebangs
+  - repo: https://github.com/antonbabenko/pre-commit-terraform
+    rev: v1.99.1 # Get the latest from: https://github.com/antonbabenko/pre-commit-terraform/releases
+    hooks:
+      - id: terraform_fmt
+      - id: terraform_docs
+      - id: terraform_tflint
+      - id: terraform_checkov
+        args:
+        - --args=--check MEDIUM
